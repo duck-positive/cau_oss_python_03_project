@@ -16,10 +16,10 @@ def start_process(path):
         select = int(input('type:'))
         if select == 1:
             """
-            사용자가 1을 입력할 경우
-            parking_spot 인스턴스의 리스트를 매개변수로 하여, 해당 리스트의 요소 수,
-            각 요소들의 정보를 출력한다.
-            이후 다시 사용자 입력을 기다린다.
+                사용자가 1을 입력할 경우
+                parking_spot 인스턴스의 리스트를 매개변수로 하여, 해당 리스트의 요소 수,
+                각 요소들의 정보를 출력한다.
+                이후 다시 사용자 입력을 기다린다.
             """
             parking_spot_manager.print_spots(spots)
         elif select == 2:
@@ -95,13 +95,23 @@ def start_process(path):
                 """
                 print("invalid input")
         elif select == 3:
+            """
+                사용자가 3을 입력할 경우
+                정렬 기준으로 할 수 있는 키워드의 목록을 출력한 후, 다시 사용자 입력을 기다린다.
+            """
             keywords = ['name', 'city', 'district', 'ptype', 'latitude', 'longitude']
             print("---sort by---")
             print(keywords)
             keyword = input('type keyword:')
+            """
+                사용자 입력을 받아 만약 keywords에 없다면 'invalid input'을 출력하며,
+                있다면 해당 keyword와 parking_spot_manager 객체 리스트 spots를 인수로 정렬 함수를 호출한 후, 정렬된 객체 리스트를 반환받는다.
+                정렬된 객체 리스트는 임시 변수에 할당한 후, 기존 spots 리스트를 삭제 후, 임시 변수에 할당했던 정렬된 리스트를 spots에 할당한다.
+            """
             if keyword in keywords:
-                print("not implemented yet")
-                # fill this block
+                sorted_spot = parking_spot_manager.sort_by_keyword(spots, keyword)
+                del spots
+                spots = sorted_spot
             else: print("invalid input")
         elif select == 4:
             """

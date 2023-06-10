@@ -125,7 +125,18 @@ def filter_by_ptype(spots, ptype):
 def filter_by_location(spots, locations):
     filtered_list_by_locations = [spot for spot in spots if spot.get('latitude') > locations[0] and spot.get('latitude') < locations[1] and spot.get('longitude') > locations[2] and spot.get('longitude') < locations[3]]
     return filtered_list_by_locations
-
+"""
+    키워드를 기준으로 정렬하는 함수
+    parking_spot 클래스의 객체 리스트 spots에서 keyword로 받은 인수를 키로 하는 값을 기준으로 정렬하는 함수
+    Args:
+        spots (List<parking_spot>) : 정렬하기 전의 객체 리스트
+        keyword (String) : 정렬 기준
+    Return:
+        (List<parking_spot>) : keyword를 키로하는 값을 기준으로 정렬된 객체 리스트
+"""
+def sort_by_keyword(spots, keyword):
+    sorted_list_by_keyword = sorted(spots, key= lambda key : key.get(keyword))
+    return sorted_list_by_keyword
 # 각 단계별로 테스트 (테스트할때 주석해제 후 사용)
 if __name__ == '__main__':
     print("Testing the module...")
