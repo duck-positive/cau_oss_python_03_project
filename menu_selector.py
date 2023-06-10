@@ -16,13 +16,17 @@ def start_process(path):
         select = int(input('type:'))
         if select == 1:
             """
-                사용자가 1을 입력할 경우
-                parking_spot 인스턴스의 리스트를 매개변수로 하여, 해당 리스트의 요소 수,
-                각 요소들의 정보를 출력한다.
-                이후 다시 사용자 입력을 기다린다.
+            사용자가 1을 입력할 경우
+            parking_spot 인스턴스의 리스트를 매개변수로 하여, 해당 리스트의 요소 수,
+            각 요소들의 정보를 출력한다.
+            이후 다시 사용자 입력을 기다린다.
             """
             parking_spot_manager.print_spots(spots)
         elif select == 2:
+            """
+            사용자가 2를 입력할 경우
+            필터 선택 목록을 출력한 후, 다시 사용자 입력을 기다린다.
+            """
             print("---filter by---")
             print("[1] name")
             print("[2] city")
@@ -31,29 +35,64 @@ def start_process(path):
             print("[5] location")
             select = int(input('type:'))
             if select == 1:
+                """
+                    사용자가 1번을 입력한 경우
+                    이름을 입력받아 parking_spot 객체의 리스트인 spots에서 name을 키로 하는 값이 사용자의 입력을 포함하는 객체들로 리스트를 만들어 반환받는다.
+                    이를 임시 변수 filtered_spots에 할당한 후, 기존 객체 리스트를 삭제한 후, 임시 변수에 할당했던 리스트를 spots 변수에 할당한다.
+                """
                 keyword = input('type name:')
-                print("not implemented yet")
-                # fill this block
+                filtered_spots = parking_spot_manager.filter_by_name(spots, keyword)
+                del spots
+                spots = filtered_spots
             elif select == 2:
+                """
+                    사용자가 2번을 입력한 경우
+                    시도를 입력받아 parking_spot 객체의 리스트인 spots에서 city를 키로 하는 값이 사용자의 입력을 포함하는 객체들로 리스트를 만들어 반환받는다.
+                    이를 임시 변수 filtered_spots에 할당한 후, 기존 객체 리스트를 삭제한 후, 임시 변수에 할당했던 리스트를 spots 변수에 할당한다.
+                """
                 keyword = input('type city:')
-                print("not implemented yet")
-                # fill this block
+                filtered_spots = parking_spot_manager.filter_by_city(spots, keyword)
+                del spots
+                spots = filtered_spots
             elif select == 3:
+                """
+                    사용자가 3번을 입력한 경우
+                    시군구를 입력받아 parking_spot 객체의 리스트인 spots에서 district를 키로 하는 값이 사용자의 입력을 포함하는 객체들로 리스트를 만들어 반환받는다.
+                    이를 임시 변수 filtered_spots에 할당한 후, 기존 객체 리스트를 삭제한 후, 임시 변수에 할당했던 리스트를 spots 변수에 할당한다.
+                """
                 keyword = input('type district:')
-                print("not implemented yet")
-                # fill this block
+                filtered_spots = parking_spot_manager.filter_by_district(spots, keyword)
+                del spots
+                spots = filtered_spots
             elif select == 4:
+                """
+                    사용자가 4번을 입력한 경우
+                    주차장유형을 입력받아 parking_spot 객체의 리스트인 spots에서 ptype을 키로 하는 값이 사용자의 입력을 포함하는 객체들로 리스트를 만들어 반환받는다.
+                    이를 임시 변수 filtered_spots에 할당한 후, 기존 객체 리스트를 삭제한 후, 임시 변수에 할당했던 리스트를 spots 변수에 할당한다.
+                """
                 keyword = input('type ptype:')
-                print("not implemented yet")
-                # fill this block
+                filtered_spots = parking_spot_manager.filter_by_ptype(spots, keyword)
+                del spots
+                spots = filtered_spots
             elif select == 5:
+                """
+                    사용자가 5번을 입력한 경우
+                    최소 위도, 최대 위도, 최소 경도, 최대 위도를 순서대로 입력받아 이를 locations라는 이름의 tuple로 만든 후 
+                    parking_spot 객체의 리스트인 spots에서 latitude를 키로 하는 값이 최소 위도보다 크고 최대 위도보다 작으며, longitude를 키로 하는 값이 최소 경도보다 크고 최대 경도보다 작은 값들을 가진 객체들로 리스트를 만들어 반환받는다.
+                    이를 임시 변수 filtered_spots에 할당한 후, 기존 객체 리스트를 삭제한 후, 임시 변수에 할당했던 리스트를 spots 변수에 할당한다.
+                """
                 min_lat = float(input('type min lat:'))
                 max_lat = float(input('type max lat:'))
                 min_lon = float(input('type min long:'))
                 max_lon = float(input('type max long:'))
-                print("not implemented yet")
-                # fill this block
+                locations = (min_lat, max_lat, min_lon, max_lon)
+                filtered_spots = parking_spot_manager.filter_by_location(spots, locations)
+                del spots
+                spots = filtered_spots
             else:
+                """
+                    그 외의 사용자 입력에 대해서는 "invalid input"을 출력한다.
+                """
                 print("invalid input")
         elif select == 3:
             keywords = ['name', 'city', 'district', 'ptype', 'latitude', 'longitude']
